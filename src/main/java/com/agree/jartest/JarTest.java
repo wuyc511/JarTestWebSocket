@@ -85,9 +85,9 @@ public class JarTest {
     /**
      * 此方法是解析websocket 中推送的消息message
      * 将String的类型转换为Map方便获取
-     * @param message
-     * @return
-     * @throws UnsupportedEncodingException
+     * @param message 获取消息
+     * @return 返回值
+     * @throws UnsupportedEncodingException 抛异常处理
      */
     public  static Map parse(String message) throws UnsupportedEncodingException {
         Map map = (Map) JSONObject.parseObject(message);
