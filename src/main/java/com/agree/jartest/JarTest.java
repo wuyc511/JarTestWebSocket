@@ -9,6 +9,10 @@ import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
+
+/**
+ * 使用Jar来实现压力测试，加上websocket来实现消息推送，并将消息的进行解析，转换为Map
+ */
 public class JarTest {
     public static void main(String[] args) throws Exception {
         // WebSocket 链接建立,注册newId13
