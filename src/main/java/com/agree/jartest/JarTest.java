@@ -77,6 +77,7 @@ public class JarTest {
 
     }
 
+
     /**
      * 此方法是解析websocket 中推送的消息message
      * 将String的类型转换为Map方便获取
