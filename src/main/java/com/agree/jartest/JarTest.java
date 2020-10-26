@@ -21,9 +21,9 @@ public class JarTest {
         SC.createWebSocket();
 
         // 对消息推送做一个初始化
-        Map<String, Object> initMessage = new HashMap<>();
+        Map<String, Object> initMessage = new HashMap<String, Object>();
         // 数据
-        Map<String, String> data = new HashMap<>();
+        Map<String, String> data = new HashMap<String, String>();
         // 将消息推进去
         initMessage.put("type", "init");
         initMessage.put("id", "newId" + 13);
@@ -89,15 +89,16 @@ public class JarTest {
      * @return 返回值
      * @throws UnsupportedEncodingException 抛异常处理
      */
-    public  static Map parse(String message) throws UnsupportedEncodingException {
+    public  static Map parse(String message) throws Exception {
         Map map = (Map) JSONObject.parseObject(message);
         if (map.get("data") != null) {
             Map datas = (Map) (map.get("data"));
             Map meta = (Map) (datas.get("meta"));
-            boolean end = (boolean) meta.get("end");
+            boolean end = (Boolean) meta.get("end");
+            //Object end = meta.get("end");
 
             // 对是否结束做判断，避免出现空指针异常
-            if (!end) {
+            if (end == false) {
                 Map maps = new HashMap();
                 String stepKey = (String) ((Map) ((Map) map.get("data")).get("router")).get("stepKey");
                 String StepKey = URLEncoder.encode(stepKey,"UTF-8");

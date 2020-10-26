@@ -52,7 +52,11 @@ public class HttpUtil {
         }
         httpPost.setEntity(entity2);
         try {
+            long t1 = System.currentTimeMillis();
             httpclient.execute(httpPost);
+            long t2 = System.currentTimeMillis();
+            System.out.println("耗时=============:" + (t2 - t1));
+
         } catch (IOException e) {
             e.printStackTrace();
         }
