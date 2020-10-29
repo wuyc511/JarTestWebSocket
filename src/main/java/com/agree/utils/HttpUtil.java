@@ -37,7 +37,7 @@ public class HttpUtil {
         httpPost.setHeader("X-ABX-OID", "%7B%0A%09%22A%22%3A%22newId13%22%0A%7D");
 
         // 添加BODY的参数， 使用StringBuffer
-        StringBuffer strbuffer = new StringBuffer();
+        StringBuilder stringBuilder = new StringBuilder();
         try {
 
             // 此处是获取请求体的内容，即是txt文件，通过流的形式来读取
@@ -46,16 +46,15 @@ public class HttpUtil {
             BufferedReader inBR = new BufferedReader(inputStreamReader);
             String str = null;
             while ((str = inBR.readLine()) != null) {// 使用readLine方法，一次读一行
-                strbuffer.append(str);
+                stringBuilder.append(str);
             }
             inBR.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        StringEntity entity2 = new StringEntity(strbuffer.toString(), "application/json", "UTF-8");
+        StringEntity entity2 = new StringEntity(stringBuilder.toString(), "application/json", "UTF-8");
         httpPost.setEntity(entity2);
-
         long t1 = System.currentTimeMillis();
         httpclient.execute(httpPost);
         long t2 = System.currentTimeMillis();

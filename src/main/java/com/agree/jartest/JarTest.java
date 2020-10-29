@@ -36,13 +36,5 @@ public class JarTest {
         SC.sendData(initMessage);
 
         logger.info("info content in the here:" + initMessage);
-
-/**------------------------------------------------------------/
- |                     发起请求 1 --开启交易                    |
- /============================================================*/
-
-
-
-
     }
 }

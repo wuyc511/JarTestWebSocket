@@ -82,7 +82,6 @@ public class WebSocket extends WebSocketClient {
                 e.printStackTrace();
             }
         }).start();
-
     }
 
     @Override
@@ -147,7 +146,6 @@ public class WebSocket extends WebSocketClient {
             map2.put("StepKey", "");
             map2.put("sessionID", "");
             return map2;
-
         }
         return null;
     }
