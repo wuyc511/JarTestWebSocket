@@ -36,7 +36,6 @@ public class HttpUtil {
         httpPost.setHeader("X-ABX-StepKey", (String) map.get("StepKey"));
         httpPost.setHeader("X-ABX-OID", "%7B%0A%09%22A%22%3A%22newId13%22%0A%7D");
 
-
         // 添加BODY的参数， 使用StringBuffer
         StringBuffer strbuffer = new StringBuffer();
         try {
@@ -49,7 +48,6 @@ public class HttpUtil {
             while ((str = inBR.readLine()) != null) {// 使用readLine方法，一次读一行
                 strbuffer.append(str);
             }
-
             inBR.close();
         } catch (Exception e) {
             e.printStackTrace();
@@ -62,13 +60,5 @@ public class HttpUtil {
         httpclient.execute(httpPost);
         long t2 = System.currentTimeMillis();
         System.out.println("execute耗时=============:" + (t2 - t1));
-        if ( ((String)(map.get("StepKey")) == "证件/证件选择") ){
-            Thread.sleep(15000);
-            System.out.println("Now it is dormant...");
-        }
-
     }
-
-
-
 }

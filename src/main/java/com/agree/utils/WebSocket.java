@@ -19,6 +19,8 @@ import java.util.Map;
  */
 public class WebSocket extends WebSocketClient {
 
+    long tt1;
+    long tt2;
     private static int i = 1;
     /**
      * 有参构造方法
@@ -41,7 +43,8 @@ public class WebSocket extends WebSocketClient {
 
     @Override
     public void onOpen(ServerHandshake serverHandshake) {
-        System.out.println("连接成功.........................");
+        tt1 = System.currentTimeMillis();
+        System.out.println(tt1 + "连接成功.........................");
         logger.info("握手成功............................");
 
     }
@@ -61,7 +64,7 @@ public class WebSocket extends WebSocketClient {
         this.send(ok);
 
         /**------------------------------------------------------------/
-         |       启动线程来执行 避免阻塞导致执行交易超时（超过15秒）      |
+         |     启动线程来执行, 避免阻塞导致执行交易时超时（超过15秒）      |
          /============================================================*/
         new Thread(()->{
             try {
@@ -71,20 +74,9 @@ public class WebSocket extends WebSocketClient {
                     map.put("url", (i++) + ".txt");
                     HttpUtil.postRequestTest(map);
                 } else {
+                    // When the program has finished executing, close websocket.
                     close();
                 }
-
-//                Map map1 = new HashMap();
-//                if (i == 1) {
-//                    map1.put("StepKey", "");
-//                    map1.put("sessionID", "");
-//                    map1.put("url", (i++) +".txt");
-//                    HttpUtil.postRequestTest(map1);
-//                } else if ( i <= 4){
-//                    Map map = parse(message);
-//                    map.put("url", (i++) + ".txt");
-//                    HttpUtil.postRequestTest(map);
-//                }
             } catch (Exception e) {
                 logger.error("AN ERROR WAS FOUND :  " + e);
                 e.printStackTrace();
@@ -95,8 +87,11 @@ public class WebSocket extends WebSocketClient {
 
     @Override
     public void onClose(int i, String s, boolean b) {
+        tt2 = System.currentTimeMillis();
         logger.info("Link closed.");
-        System.out.println("链接已关闭");
+
+        System.out.println(tt2 + "链接已关闭");
+        System.out.println("The total times is : " + (tt2 - tt1));
     }
 
     @Override
