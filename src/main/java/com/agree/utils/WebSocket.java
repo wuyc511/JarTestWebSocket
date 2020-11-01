@@ -21,7 +21,7 @@ public class WebSocket extends WebSocketClient {
     long tt1;
     long tt2;
     private static int i = 1;
-    /**
+    /** 
      * 有参构造方法
      * @param uri
      * @throws Exception
